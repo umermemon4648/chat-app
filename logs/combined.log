@@ -108,3 +108,5 @@
 {"date":"2023-09-05T07:21:07.393Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
 {"date":"2023-09-05T07:21:38.311Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
 {"date":"2023-09-05T07:21:40.361Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:22:07.072Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:22:17.624Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
