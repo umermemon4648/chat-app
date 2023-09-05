@@ -6,6 +6,7 @@ const app = express();
 const router = require("./router");
 const loggerMiddleware = require("./middleware/loggerMiddleware");
 const swaggerUi = require("swagger-ui-express");
+const path = require("path");
 const swaggerFile = require("../swagger_output.json"); // Generated Swagger file
 
 // Middlewares
@@ -21,8 +22,12 @@ app.use("/", router);
 // api doc
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
+// app.get("/", (req, res) => {
+//   res.send("BE-boilerplate v1.1");
+// });
+app.use(express.static(path.resolve("./public")));
 app.get("/", (req, res) => {
-  res.send("BE-boilerplate v1.1");
+  res.sendFile("./public/index.html");
 });
 
 // send back a 404 error for any unknown api request

@@ -13,9 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // router index
 app.use("/", router);
 
-app.get("/", (req, res) => {
-  res.send("Chat app");
-});
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {

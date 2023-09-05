@@ -98,3 +98,13 @@
 {"date":"2023-03-18T12:29:00.797Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
 {"date":"2023-03-18T12:30:38.116Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
 {"date":"2023-03-18T12:38:23.451Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/api-docs/"}
+{"date":"2023-09-05T07:17:03.272Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:17:03.566Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/favicon.ico"}
+{"date":"2023-09-05T07:17:05.901Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:17:47.653Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:17:49.198Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:18:03.435Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:21:07.064Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:21:07.393Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:21:38.311Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
+{"date":"2023-09-05T07:21:40.361Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/"}
