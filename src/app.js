@@ -8,14 +8,19 @@ const loggerMiddleware = require("./middleware/loggerMiddleware");
 const swaggerUi = require("swagger-ui-express");
 const path = require("path");
 const swaggerFile = require("../swagger_output.json"); // Generated Swagger file
-
+const fileUpload = require("express-fileupload");
 // Middlewares
 app.use(express.json());
 app.use(cors());
 app.options("*", cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(loggerMiddleware);
+app.use(
+  fileUpload({
+    limits: { fileSize: 1024 * 1024 * 2 },
+  })
+), // 2 MB
+  app.use(loggerMiddleware);
 
 // router index
 app.use("/", router);

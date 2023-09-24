@@ -1,6 +1,6 @@
 const app = require("./app");
 const dotenv = require("dotenv");
-// const connectDB = require("./config/db");
+const connectDB = require("./config/db");
 const http = require("http");
 const server = http.createServer(app);
 const socket = require("socket.io")(server);
@@ -16,14 +16,14 @@ const PORT = process.env.PORT || 8001;
 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  // connectDB();
+  connectDB();
 });
 
 socket.on("connection", (stk) => {
   console.log("Socket Connected");
   stk.on("chat message", (msg) => {
     console.log(msg);
-    stk.broadcast.emit('message', msg)
+    stk.broadcast.emit("message", msg);
   });
 });
 

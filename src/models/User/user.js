@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const validator = require("validator");
-dotenv.config({ path: ".././src/config/config.env" });
+dotenv.config({ path: "../../src/config/config.env" });
 const userSchema = new Schema({
   name: {
     type: String,
@@ -20,9 +20,15 @@ const userSchema = new Schema({
       }
     },
   },
+  profilePic: {
+    type: String,
+    default:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9KehZ0Xz2eEw6uQZDN7YcxdzRfLNfyDs-Hg&usqp=CAU",
+  },
   password: {
     type: String,
     required: true,
+    select: false,
     //validation will be before saving to db
   },
   role: {
@@ -77,6 +83,6 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-const user = mongoose.model("user", userSchema);
+const user = mongoose.model("User", userSchema);
 
 module.exports = user;
