@@ -592,3 +592,27 @@
 {"date":"2023-09-06T09:07:00.876Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/style.css"}
 {"date":"2023-09-06T09:07:00.879Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/wassup.png"}
 {"date":"2023-09-06T09:07:00.885Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/client.js"}
+{"date":"2023-09-25T05:23:04.890Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:26:37.056Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:27:28.475Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:29:17.839Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:31:30.365Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:36:02.084Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:38:15.240Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:39:16.678Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:40:17.378Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:42:47.837Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:43:28.509Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:43:32.770Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-25T05:43:33.162Z","level":"error","message":"User already exists","method":"POST","service":"user-service","url":"/register"}
+{"date":"2023-09-25T07:24:49.743Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/requestEmailToken"}
+{"date":"2023-09-25T07:24:51.147Z","level":"error","message":"The provided authorization grant is invalid, expired, or revoked","method":"POST","service":"user-service","url":"/requestEmailToken"}
+{"date":"2023-09-25T07:25:17.486Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/verifyEmail"}
+{"date":"2023-09-25T07:25:29.721Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/requestEmailToken"}
+{"date":"2023-09-25T07:25:31.030Z","level":"error","message":"The provided authorization grant is invalid, expired, or revoked","method":"POST","service":"user-service","url":"/requestEmailToken"}
+{"date":"2023-09-25T07:25:56.530Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/verifyEmail"}
+{"date":"2023-09-25T07:26:19.363Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-25T07:27:32.631Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-25T07:29:22.405Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-25T07:29:22.705Z","level":"error","message":"User does not exist","service":"user-service"}
+{"date":"2023-09-25T07:29:22.710Z","level":"error","message":"Invalid status code: IncomingMessage {\n  _readableState: [ReadableState],\n  _events: [Object: null prototype] {},\n  _eventsCount: 0,\n  _maxListeners: undefined,\n  socket: [Socket],\n  httpVersionMajor: 1,\n  httpVersionMinor: 1,\n  httpVersion: '1.1',\n  complete: true,\n  rawHeaders: [Array],\n  rawTrailers: [],\n  joinDuplicateHeaders: undefined,\n  aborted: false,\n  upgrade: false,\n  url: '/login',\n  method: 'POST',\n  statusCode: null,\n  statusMessage: null,\n  client: [Socket],\n  _consuming: true,\n  _dumped: false,\n  next: [Function: next],\n  baseUrl: '/auth',\n  originalUrl: '/auth/login',\n  _parsedUrl: [Url],\n  params: {},\n  query: {},\n  res: [ServerResponse],\n  body: [Object],\n  _body: true,\n  length: undefined,\n  route: [Route],\n  [Symbol(kCapture)]: false,\n  [Symbol(kHeaders)]: [Object],\n  [Symbol(kHeadersCount)]: 18,\n  [Symbol(kTrailers)]: null,\n  [Symbol(kTrailersCount)]: 0\n}","method":"POST","service":"user-service","url":"/login"}

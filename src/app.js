@@ -20,7 +20,9 @@ app.use(
     limits: { fileSize: 1024 * 1024 * 2 },
   })
 ), // 2 MB
-  app.use(loggerMiddleware);
+  app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+
+app.use(loggerMiddleware);
 
 // router index
 app.use("/", router);

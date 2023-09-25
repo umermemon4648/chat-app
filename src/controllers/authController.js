@@ -2,11 +2,14 @@ const User = require("../models/User/user");
 const sendMail = require("../utils/sendMail");
 const SuccessHandler = require("../utils/SuccessHandler");
 const ErrorHandler = require("../utils/ErrorHandler");
+const path = require("path");
 //register
 const register = async (req, res) => {
   // #swagger.tags = ['auth']
   try {
     const { name, email, password } = req.body;
+    console.log(req.body);
+    console.log(req.file);
     if (
       !password.match(
         /(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$/
@@ -23,10 +26,11 @@ const register = async (req, res) => {
     if (user) {
       return ErrorHandler("User already exists", 400, req, res);
     }
-    let profilePicName = null;
+    let profilePicName;
     if (req.file) {
-      const { profilePic } = req.files;
+      const { profilePic } = req.file;
       if (profilePic) {
+        console.log("PROFILE PIC: ", req.file);
         // It should be image
         if (!profilePic.mimetype.startsWith("image")) {
           return ErrorHandler("Please upload an image file", 400, req, res);
@@ -46,6 +50,7 @@ const register = async (req, res) => {
       name,
       email,
       password,
+      profilePic: profilePicName,
     });
     newUser.save();
     return SuccessHandler("User created successfully", 200, res);
@@ -130,7 +135,11 @@ const login = async (req, res) => {
       return ErrorHandler("Email not verified", 400, req, res);
     }
     jwtToken = user.getJWTToken();
-    return SuccessHandler("Logged in successfully", 200, res);
+    return SuccessHandler(
+      { message: "Logged in successfully", user },
+      200,
+      res
+    );
   } catch (error) {
     return ErrorHandler(error.message, 500, req, res);
   }
