@@ -38,8 +38,8 @@ app.get("/", (req, res) => {
 });
 
 // send back a 404 error for any unknown api request
-// app.use((req, res, next) => {
-//   next(new ApiError(404, "Not found"));
-// });
+app.use((req, res, next) => {
+  next(new ApiError(404, "Not found"));
+});
 
 module.exports = app;

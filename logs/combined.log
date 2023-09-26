@@ -616,3 +616,47 @@
 {"date":"2023-09-25T07:29:22.405Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
 {"date":"2023-09-25T07:29:22.705Z","level":"error","message":"User does not exist","service":"user-service"}
 {"date":"2023-09-25T07:29:22.710Z","level":"error","message":"Invalid status code: IncomingMessage {\n  _readableState: [ReadableState],\n  _events: [Object: null prototype] {},\n  _eventsCount: 0,\n  _maxListeners: undefined,\n  socket: [Socket],\n  httpVersionMajor: 1,\n  httpVersionMinor: 1,\n  httpVersion: '1.1',\n  complete: true,\n  rawHeaders: [Array],\n  rawTrailers: [],\n  joinDuplicateHeaders: undefined,\n  aborted: false,\n  upgrade: false,\n  url: '/login',\n  method: 'POST',\n  statusCode: null,\n  statusMessage: null,\n  client: [Socket],\n  _consuming: true,\n  _dumped: false,\n  next: [Function: next],\n  baseUrl: '/auth',\n  originalUrl: '/auth/login',\n  _parsedUrl: [Url],\n  params: {},\n  query: {},\n  res: [ServerResponse],\n  body: [Object],\n  _body: true,\n  length: undefined,\n  route: [Route],\n  [Symbol(kCapture)]: false,\n  [Symbol(kHeaders)]: [Object],\n  [Symbol(kHeadersCount)]: 18,\n  [Symbol(kTrailers)]: null,\n  [Symbol(kTrailersCount)]: 0\n}","method":"POST","service":"user-service","url":"/login"}
+{"date":"2023-09-26T06:58:03.882Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T06:59:38.658Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:00:45.282Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:03:17.677Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:04:19.264Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:04:38.067Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:04:38.068Z","level":"error","message":"Cannot read properties of undefined (reading '_id')","method":"POST","service":"user-service","url":"/create"}
+{"date":"2023-09-26T07:05:15.634Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:05:35.443Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:06:04.852Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:07:09.737Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:07:31.274Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/register"}
+{"date":"2023-09-26T07:07:44.328Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/requestEmailToken"}
+{"date":"2023-09-26T07:07:45.818Z","level":"error","message":"The provided authorization grant is invalid, expired, or revoked","method":"POST","service":"user-service","url":"/requestEmailToken"}
+{"date":"2023-09-26T07:08:02.386Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/verifyEmail"}
+{"date":"2023-09-26T07:08:19.404Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:09:00.443Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:09:15.186Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:09:37.725Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:14:53.056Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-26T07:15:35.689Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:17:28.480Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:18:16.203Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:25:45.689Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:27:27.407Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:27:27.745Z","level":"error","message":"senderId is not defined","method":"POST","service":"user-service","url":"/create"}
+{"date":"2023-09-26T07:28:02.952Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:31:15.975Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:32:21.069Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:32:53.976Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:33:35.750Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:34:15.570Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:34:39.998Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create"}
+{"date":"2023-09-26T07:37:31.755Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:38:23.829Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:38:43.440Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:39:35.449Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:41:01.716Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:41:05.067Z","level":"error","message":"Invalid userId","method":"POST","service":"user-service","url":"/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:41:08.197Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:41:08.518Z","level":"error","message":"Invalid userId","method":"POST","service":"user-service","url":"/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:41:15.707Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:41:16.021Z","level":"error","message":"Invalid userId","method":"POST","service":"user-service","url":"/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-26T07:41:34.771Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}

@@ -136,7 +136,7 @@ const login = async (req, res) => {
     }
     jwtToken = user.getJWTToken();
     return SuccessHandler(
-      { message: "Logged in successfully", user },
+      { message: "Logged in successfully", jwtToken, user },
       200,
       res
     );

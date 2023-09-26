@@ -3,7 +3,7 @@ const chat = require("../controllers/chatController");
 const isAuthenticated = require("../middleware/auth");
 const router = express.Router();
 
-//get
-// router.route("/logout").get(auth.logout);
+//post
+router.route("/create/:userId").post(isAuthenticated, chat.createChat);
 
 module.exports = router;
