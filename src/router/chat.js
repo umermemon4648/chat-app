@@ -8,5 +8,13 @@ router.route("/create/:userId").post(isAuthenticated, chat.createChat);
 router.route("/createGroup").post(isAuthenticated, chat.createGroupChat);
 //get
 router.route("/fetch").get(isAuthenticated, chat.fetchChats);
+//put
+router
+  .route("/addMember/:chatId")
+  .put(isAuthenticated, chat.addMemberToGroupChat);
+router
+  .route("/removeMember/:chatId")
+  .put(isAuthenticated, chat.removeMemberFromGroupChat);
+router.route("/renameGroup/:chatId").put(isAuthenticated, chat.renameGroupChat);
 
 module.exports = router;

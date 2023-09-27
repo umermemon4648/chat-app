@@ -12,7 +12,7 @@ const createChat = async (req, res) => {
     // const { userId } = req.body;
     const { userId } = req.params;
     if (!mongoose.Types.ObjectId.isValid(userId)) {
-      return ErrorHandler("Invalid userId", 500, req, res);
+      return ErrorHandler("Invalid userId", 400, req, res);
     }
     // console.log(mongoose.Types.ObjectId.isValid(userId));
     // const userId = mongoose.Types.ObjectId(req.body.userId);
@@ -124,8 +124,128 @@ const createGroupChat = async (req, res) => {
     ErrorHandler(error.message, 500, req, res);
   }
 };
+const addMemberToGroupChat = async (req, res) => {
+  // #swagger.tags = ['chat']
+  try {
+    const currentUser = req.user._id;
+    const { members } = req.body;
+    const { chatId } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(chatId)) {
+      return ErrorHandler("Invalid chatId", 400, req, res);
+    }
+    const groupChat = await Chat.findOneAndUpdate(
+      {
+        _id: chatId,
+        groupAdmin: currentUser,
+      },
+      {
+        $push: { participants: members },
+      }
+    )
+      .populate({
+        path: "participants",
+        select: "name email profilePic",
+      })
+      .populate({
+        path: "groupAdmin",
+        select: "name email profilePic",
+      });
+    if (!groupChat) {
+      ErrorHandler("Group not found or you are not an admin", 400, req, res);
+    }
+    SuccessHandler(
+      { message: "Members added to the group", groupChat },
+      200,
+      res
+    );
+  } catch (error) {
+    ErrorHandler(error.members, 500, req, res);
+  }
+};
+
+const removeMemberFromGroupChat = async (req, res) => {
+  // #swagger.tags = ['chat']
+  try {
+    const currentUser = req.user._id;
+    const { members } = req.body;
+    const { chatId } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(chatId)) {
+      return ErrorHandler("Invalid chatId", 400, req, res);
+    }
+    const groupChat = await Chat.findOneAndUpdate(
+      {
+        _id: chatId,
+        groupAdmin: currentUser,
+      },
+      {
+        $pull: { participants: members },
+      }
+    )
+      .populate({
+        path: "participants",
+        select: "name email profilePic",
+      })
+      .populate({
+        path: "groupAdmin",
+        select: "name email profilePic",
+      });
+    if (!groupChat) {
+      ErrorHandler("Group not found or you are not an admin", 400, req, res);
+    }
+    SuccessHandler(
+      { message: "Members added to the group", groupChat },
+      200,
+      res
+    );
+  } catch (error) {
+    ErrorHandler(error.members, 500, req, res);
+  }
+};
+const renameGroupChat = async (req, res) => {
+  // #swagger.tags = ['chat']
+  try {
+    const currentUser = req.user._id;
+    const { groupName } = req.body;
+    const { chatId } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(chatId)) {
+      return ErrorHandler("Invalid chatId", 400, req, res);
+    }
+    const groupChat = await Chat.findOneAndUpdate(
+      {
+        _id: chatId,
+        groupAdmin: currentUser,
+      },
+      {
+        $set: {
+          groupName,
+        },
+      }
+    )
+      .populate({
+        path: "participants",
+        select: "name email profilePic",
+      })
+      .populate({
+        path: "groupAdmin",
+        select: "name email profilePic",
+      });
+    if (!groupChat) {
+      ErrorHandler("Group not found or you are not an admin", 400, req, res);
+    }
+    SuccessHandler(
+      { message: "Group name has been successfully updated.", groupChat },
+      200,
+      res
+    );
+  } catch (error) {
+    ErrorHandler(error.members, 500, req, res);
+  }
+};
 module.exports = {
   createChat,
   fetchChats,
   createGroupChat,
+  addMemberToGroupChat,
+  removeMemberFromGroupChat,
+  renameGroupChat,
 };
