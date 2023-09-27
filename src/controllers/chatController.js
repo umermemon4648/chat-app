@@ -140,7 +140,8 @@ const addMemberToGroupChat = async (req, res) => {
       },
       {
         $push: { participants: members },
-      }
+      },
+      { new: true }
     )
       .populate({
         path: "participants",
@@ -172,14 +173,21 @@ const removeMemberFromGroupChat = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(chatId)) {
       return ErrorHandler("Invalid chatId", 400, req, res);
     }
+    console.log(req.body);
+    let isMatch = await Chat.findOne({
+      _id: chatId,
+      groupAdmin: currentUser,
+    });
+    console.log(isMatch);
     const groupChat = await Chat.findOneAndUpdate(
       {
         _id: chatId,
         groupAdmin: currentUser,
       },
       {
-        $pull: { participants: members },
-      }
+        $pull: { participants: { $in: members } },
+      },
+      { new: true }
     )
       .populate({
         path: "participants",
@@ -193,7 +201,7 @@ const removeMemberFromGroupChat = async (req, res) => {
       ErrorHandler("Group not found or you are not an admin", 400, req, res);
     }
     SuccessHandler(
-      { message: "Members added to the group", groupChat },
+      { message: "Members Remove from the group", groupChat },
       200,
       res
     );
@@ -219,7 +227,8 @@ const renameGroupChat = async (req, res) => {
         $set: {
           groupName,
         },
-      }
+      },
+      { new: true }
     )
       .populate({
         path: "participants",

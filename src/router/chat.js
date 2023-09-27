@@ -10,10 +10,10 @@ router.route("/createGroup").post(isAuthenticated, chat.createGroupChat);
 router.route("/fetch").get(isAuthenticated, chat.fetchChats);
 //put
 router
-  .route("/addMember/:chatId")
+  .route("/addMembers/:chatId")
   .put(isAuthenticated, chat.addMemberToGroupChat);
 router
-  .route("/removeMember/:chatId")
+  .route("/removeMembers/:chatId")
   .put(isAuthenticated, chat.removeMemberFromGroupChat);
 router.route("/renameGroup/:chatId").put(isAuthenticated, chat.renameGroupChat);
 

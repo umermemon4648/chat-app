@@ -670,3 +670,16 @@
 {"date":"2023-09-27T02:54:00.743Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/createGroup"}
 {"date":"2023-09-27T02:54:01.071Z","level":"error","message":"Unexpected token u in JSON at position 0","method":"POST","service":"user-service","url":"/createGroup"}
 {"date":"2023-09-27T02:54:46.272Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/createGroup"}
+{"date":"2023-09-27T03:27:25.020Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/removeMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:29:50.457Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/removeMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:31:40.829Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/removeMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:45:23.434Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/removeMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:46:49.913Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/removeMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:47:55.677Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/removeMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:50:24.631Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/removeMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:52:28.390Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/addMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:54:30.424Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/removeMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:54:51.887Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/addMembers/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:57:04.833Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/renameGroup/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:58:01.104Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/renameGroup/651399761fc5aab66b2989ed"}
+{"date":"2023-09-27T03:58:13.068Z","level":"info","message":"Request received","method":"PUT","service":"user-service","url":"/chat/renameGroup/651399761fc5aab66b2989ed"}
