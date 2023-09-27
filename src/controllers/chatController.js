@@ -1,5 +1,6 @@
 const Chat = require("../models/Chat/chat");
 const User = require("../models/User/user");
+const Message = require("../models/Chat/message");
 const mongoose = require("mongoose");
 const SuccessHandler = require("../utils/SuccessHandler");
 const ErrorHandler = require("../utils/ErrorHandler");
@@ -15,7 +16,7 @@ const createChat = async (req, res) => {
     }
     // console.log(mongoose.Types.ObjectId.isValid(userId));
     // const userId = mongoose.Types.ObjectId(req.body.userId);
-    // console.log(senderId);s
+    // console.log(senderId);
     // console.log(mongoose.Types.ObjectId.isValid(userId));
     let isChatExist = await Chat.find({
       isGroupChat: false,
@@ -58,7 +59,73 @@ const createChat = async (req, res) => {
     return ErrorHandler(error.message, 500, req, res);
   }
 };
+const fetchChats = async (req, res) => {
+  // #swagger.tags = ['chat']
+  const currentUser = req.user._id;
+  let chat = await Chat.find({
+    participants: { $elemMatch: { $eq: currentUser } },
+  })
+    .populate({
+      path: "participants",
+      select: "name email profilePic",
+    })
+    .populate({
+      path: "groupAdmin",
+      select: "name email profilePic",
+    })
+    .populate({
+      path: "latestMessage",
+    })
+    .sort({ updatedAt: -1 });
+  // chat = await User.populate(isChatExist, {
+  //   path: "latestMessage.sender",
+  //   select: "name profilePic email",
+  // });
+  try {
+    SuccessHandler({ message: "Feched Chat successfully", chat }, 200, res);
+  } catch (error) {
+    ErrorHandler(error.message, 500, req, res);
+  }
+};
 
+const createGroupChat = async (req, res) => {
+  // #swagger.tags = ['chat']
+  const currentUser = req.user._id;
+  const { groupMembers, groupName } = req.body;
+
+  try {
+    let members = JSON.parse(groupMembers);
+    members.push(currentUser);
+    if (members.length < 2) {
+      ErrorHandler(
+        "More than 2 participants are required to form a group",
+        400,
+        req,
+        res
+      );
+    }
+    const groupChat = await Chat.create({
+      isGroupChat: true,
+      groupAdmin: currentUser,
+      participants: members,
+      groupName,
+    });
+    const fullGroupChat = await Chat.findOne({ _id: groupChat._id })
+      .populate({
+        path: "participants",
+        select: "name email profilePic",
+      })
+      .populate({
+        path: "groupAdmin",
+        select: "name email profilePic",
+      });
+    SuccessHandler({ message: "Group chat created", fullGroupChat }, 200, res);
+  } catch (error) {
+    ErrorHandler(error.message, 500, req, res);
+  }
+};
 module.exports = {
   createChat,
+  fetchChats,
+  createGroupChat,
 };

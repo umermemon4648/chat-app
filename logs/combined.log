@@ -660,3 +660,13 @@
 {"date":"2023-09-26T07:41:15.707Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}
 {"date":"2023-09-26T07:41:16.021Z","level":"error","message":"Invalid userId","method":"POST","service":"user-service","url":"/create/65111e00568e2ef83c47ede0"}
 {"date":"2023-09-26T07:41:34.771Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/65111e00568e2ef83c47ede0"}
+{"date":"2023-09-27T02:21:33.082Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/auth/login"}
+{"date":"2023-09-27T02:22:15.496Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/chat/fetch"}
+{"date":"2023-09-27T02:23:57.267Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/create/6511193937765b3b065faa83"}
+{"date":"2023-09-27T02:24:23.072Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/chat/fetch"}
+{"date":"2023-09-27T02:26:09.384Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/chat/fetch"}
+{"date":"2023-09-27T02:27:08.134Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/chat/fetch"}
+{"date":"2023-09-27T02:30:05.855Z","level":"info","message":"Request received","method":"GET","service":"user-service","url":"/chat/fetch"}
+{"date":"2023-09-27T02:54:00.743Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/createGroup"}
+{"date":"2023-09-27T02:54:01.071Z","level":"error","message":"Unexpected token u in JSON at position 0","method":"POST","service":"user-service","url":"/createGroup"}
+{"date":"2023-09-27T02:54:46.272Z","level":"info","message":"Request received","method":"POST","service":"user-service","url":"/chat/createGroup"}
