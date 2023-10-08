@@ -3,7 +3,11 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const http = require("http");
 const server = http.createServer(app);
-const socket = require("socket.io")(server);
+const socket = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+  },
+});
 
 dotenv.config({ path: "./src/config/config.env" }); //load env vars
 
@@ -21,10 +25,6 @@ server.listen(PORT, () => {
 
 socket.on("connection", (stk) => {
   console.log("Socket Connected");
-  stk.on("chat message", (msg) => {
-    console.log(msg);
-    stk.broadcast.emit("message", msg);
-  });
 });
 
 //socket.io
