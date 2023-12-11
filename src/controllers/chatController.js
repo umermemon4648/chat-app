@@ -4,20 +4,16 @@ const Message = require("../models/Chat/message");
 const mongoose = require("mongoose");
 const SuccessHandler = require("../utils/SuccessHandler");
 const ErrorHandler = require("../utils/ErrorHandler");
-//register
+
+// ? Initiate chat
 const createChat = async (req, res) => {
   // #swagger.tags = ['chat']
   try {
     const currentUser = req.user._id;
-    // const { userId } = req.body;
     const { userId } = req.params;
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return ErrorHandler("Invalid userId", 400, req, res);
     }
-    // console.log(mongoose.Types.ObjectId.isValid(userId));
-    // const userId = mongoose.Types.ObjectId(req.body.userId);
-    // console.log(senderId);
-    // console.log(mongoose.Types.ObjectId.isValid(userId));
     let isChatExist = await Chat.find({
       isGroupChat: false,
       $and: [
@@ -28,19 +24,13 @@ const createChat = async (req, res) => {
       .populate("participants")
       .populate("latestMessage");
 
-    console.log(isChatExist);
     isChatExist = await User.populate(isChatExist, {
       path: "latestMessage.sender",
       select: "name profilePic email",
     });
     if (isChatExist.length > 0) {
-      res.send(isChatExist[0]);
+      return ErrorHandler(`Chat with this user already exist`, 400, req, res);
     } else {
-      // let chatData = {
-      //   chatName: "sender",
-      //   isGroupChat: false,
-      //   participants: [currentUser, userId],
-      // };
       const createChat = await Chat.create({
         chatName: "sender",
         isGroupChat: false,
@@ -59,30 +49,59 @@ const createChat = async (req, res) => {
     return ErrorHandler(error.message, 500, req, res);
   }
 };
+
+// ?  fetch User chats
 const fetchChats = async (req, res) => {
   // #swagger.tags = ['chat']
-  const currentUser = req.user._id;
-  let chat = await Chat.find({
-    participants: { $elemMatch: { $eq: currentUser } },
-  })
-    .populate({
-      path: "participants",
-      select: "name email profilePic",
-    })
-    .populate({
-      path: "groupAdmin",
-      select: "name email profilePic",
-    })
-    .populate({
-      path: "latestMessage",
-    })
-    .sort({ updatedAt: -1 });
-  // chat = await User.populate(isChatExist, {
-  //   path: "latestMessage.sender",
-  //   select: "name profilePic email",
-  // });
   try {
-    SuccessHandler({ message: "Feched Chat successfully", chat }, 200, res);
+    // const searchFilter = req.body.search
+    //   ? {
+    //       $or: [
+    //         { firstName: { $reg: req.body.search, $options: "i" } },
+    //         {
+    //           lastName: { $reg: req.body.search, $options: "i" },
+    //         },
+    //       ],
+    //     }
+    //   : {};
+    let chats = await Chat.find({
+      participants: { $elemMatch: { $eq: req.user._id } },
+    })
+      .populate({
+        path: "participants",
+        select: "firstName lastName email profilePic",
+      })
+      .populate({
+        path: "groupAdmin",
+        select: "firstName lastName email profilePic",
+      })
+      .populate({
+        path: "latestMessage",
+      })
+      .sort({ updatedAt: -1 });
+    let userChats = await Promise.all(
+      chats.map(async (val) => {
+        const unreadMessage = await Message.countDocuments({
+          chat: val._id,
+          isRead: false,
+          sender: { $ne: req.user._id },
+        });
+        const latestMessage = val.latestMessage
+          ? val.latestMessage.toObject()
+          : null;
+
+        return {
+          ...val.toJSON(),
+          latestMessage,
+          unReadMessageCount: unreadMessage,
+        };
+      })
+    );
+    SuccessHandler(
+      { message: "chat fetched successfully", chat: userChats },
+      200,
+      res
+    );
   } catch (error) {
     ErrorHandler(error.message, 500, req, res);
   }
@@ -250,6 +269,105 @@ const renameGroupChat = async (req, res) => {
     ErrorHandler(error.members, 500, req, res);
   }
 };
+
+// message
+const sendMessage = async (req, res) => {
+  // #swagger.tags = ['chat']
+  try {
+    const currentUser = req.user._id;
+    const { message } = req.body;
+    const { chatId } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(chatId)) {
+      return ErrorHandler("Invalid chatId", 400, req, res);
+    }
+    let newMessage = await Message.create({
+      chat: chatId,
+      content: message,
+      sender: currentUser,
+    });
+    newMessage = await newMessage.populate({
+      path: "sender",
+      select: "name email profilePic",
+    });
+    newMessage = await newMessage.populate({
+      path: "chat",
+      // select: "name email profilePic",
+    });
+    newMessage = await User.populate(newMessage, {
+      path: "chat.participants",
+      select: "name email profilePic",
+    });
+    await Chat.findByIdAndUpdate(chatId, {
+      $set: { latestMessage: newMessage },
+    });
+    return SuccessHandler(
+      { message: "Chat created successfully", message: newMessage },
+      200,
+      res
+    );
+  } catch (error) {
+    return ErrorHandler(error.message, 500, req, res);
+  }
+};
+const fetchAllMessages = async (req, res) => {
+  // #swagger.tags = ['chat']
+  try {
+    const { chatId } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(chatId)) {
+      return ErrorHandler("Invalid chatId", 400, req, res);
+    }
+    const isChatExist = await Chat.find({
+      chat: chatId,
+      participants: { $in: req.user._id },
+    });
+    if (!isChatExist) {
+      return ErrorHandler("Chat not found", 404, req, res);
+    }
+
+    const allMessages = await Message.find({ chat: chatId })
+      .populate({
+        path: "sender",
+        select: "name email profilePic",
+      })
+      .populate({
+        path: "chat",
+        // select: "name email profilePic",
+      });
+    // let unreadMessage = 0;
+    const messages = await Promise.all(
+      allMessages.map(async (val) => {
+        const isSender = val.sender._id.equals(req.user._id);
+        const isRead = val.isRead || isSender;
+        console.log(isRead);
+        // if (!isRead) {
+        //   unreadMessage++;
+        // }
+        if (!isSender) {
+          console.log(val._id);
+          await Message.findByIdAndUpdate(
+            val._id,
+            { $set: { isRead: true } },
+            { new: true }
+          );
+        }
+
+        return {
+          ...val.toObject(),
+          isSender,
+        };
+      })
+    );
+
+    return SuccessHandler(
+      { message: "Messages fetched successfully", messages: messages },
+      200,
+      res
+    );
+  } catch (error) {
+    return ErrorHandler(error.message, 500, req, res);
+  }
+};
+
 module.exports = {
   createChat,
   fetchChats,
@@ -257,4 +375,6 @@ module.exports = {
   addMemberToGroupChat,
   removeMemberFromGroupChat,
   renameGroupChat,
+  sendMessage,
+  fetchAllMessages,
 };

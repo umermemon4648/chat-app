@@ -8,7 +8,6 @@ const chatSchema = new Schema(
     chatName: { type: String, trim: true },
     groupName: { type: String, trim: true },
     groupAdmin: { type: Schema.Types.ObjectId, ref: "User" },
-    unseenCount: { type: Number, default: 0 },
     groupIcon: {
       type: String,
       // default:

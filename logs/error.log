@@ -16,3 +16,8 @@
 {"date":"2023-09-27T04:17:46.569Z","level":"error","message":"Message.create(...).populate is not a function","method":"POST","service":"user-service","url":"/send/651399761fc5aab66b2989ed"}
 {"date":"2023-09-27T04:22:57.099Z","level":"error","message":"createmessage.populate(...).populate is not a function","method":"POST","service":"user-service","url":"/send/651399761fc5aab66b2989ed"}
 {"date":"2023-09-27T04:27:12.226Z","level":"error","message":"Cast to ObjectId failed for value \"hello\" (type string) at path \"latestMessage\" because of \"BSONTypeError\"","method":"POST","service":"user-service","url":"/send/651399761fc5aab66b2989ed"}
+{"date":"2023-12-11T08:01:45.549Z","level":"error","message":"Invalid userId","method":"POST","service":"user-service","url":"/create/6511193937765b3b065faa83"}
+{"date":"2023-12-11T08:01:51.961Z","level":"error","message":"Invalid userId","method":"POST","service":"user-service","url":"/create/6511193937765b3b065faa83"}
+{"date":"2023-12-11T08:04:27.357Z","level":"error","message":"Chat with this user already exist","method":"POST","service":"user-service","url":"/create/6511193937765b3b065faa83"}
+{"date":"2023-12-11T08:24:52.840Z","level":"error","message":"val is not iterable","method":"GET","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T08:42:22.577Z","level":"error","message":"Can't use $neq","method":"GET","service":"user-service","url":"/fetch"}

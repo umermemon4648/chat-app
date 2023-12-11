@@ -3,13 +3,16 @@ const sendMail = require("../utils/sendMail");
 const SuccessHandler = require("../utils/SuccessHandler");
 const ErrorHandler = require("../utils/ErrorHandler");
 const path = require("path");
+const validator = require("validator");
+
 //register
 const register = async (req, res) => {
   // #swagger.tags = ['auth']
   try {
-    const { name, email, password } = req.body;
-    console.log(req.body);
-    console.log(req.file);
+    const { firstName, lastName, email, password } = req.body;
+    if (!validator.isEmail(email)) {
+      return ErrorHandler("Invalid email format", 400, req, res);
+    }
     if (
       !password.match(
         /(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$/
@@ -47,7 +50,8 @@ const register = async (req, res) => {
       }
     }
     const newUser = await User.create({
-      name,
+      firstName,
+      lastName,
       email,
       password,
       profilePic: profilePicName,
@@ -65,6 +69,9 @@ const requestEmailToken = async (req, res) => {
 
   try {
     const { email } = req.body;
+    if (!validator.isEmail(email)) {
+      return ErrorHandler("Invalid email format", 400, req, res);
+    }
     const user = await User.findOne({ email });
     if (!user) {
       return ErrorHandler("User does not exist", 400, req, res);
@@ -93,6 +100,9 @@ const verifyEmail = async (req, res) => {
 
   try {
     const { email, emailVerificationToken } = req.body;
+    if (!validator.isEmail(email)) {
+      return ErrorHandler("Invalid email format", 400, req, res);
+    }
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
@@ -123,9 +133,12 @@ const login = async (req, res) => {
 
   try {
     const { email, password } = req.body;
+    if (!validator.isEmail(email)) {
+      return ErrorHandler("Invalid email format", 400, req, res);
+    }
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
-      return ErrorHandler("User does not exist", req, 400, res);
+      return ErrorHandler("User does not exist", 400, req, res);
     }
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
@@ -163,6 +176,7 @@ const forgotPassword = async (req, res) => {
 
   try {
     const { email } = req.body;
+
     const user = await User.findOne({ email });
     if (!user) {
       return ErrorHandler("User does not exist", 400, req, res);

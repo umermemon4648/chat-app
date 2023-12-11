@@ -6,7 +6,11 @@ const dotenv = require("dotenv");
 const validator = require("validator");
 dotenv.config({ path: "../../src/config/config.env" });
 const userSchema = new Schema({
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
     type: String,
     required: true,
   },

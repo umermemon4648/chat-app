@@ -17,4 +17,12 @@ router
   .put(isAuthenticated, chat.removeMemberFromGroupChat);
 router.route("/renameGroup/:chatId").put(isAuthenticated, chat.renameGroupChat);
 
+// message
+//post
+router.route("/sendMessage/:chatId").post(isAuthenticated, chat.sendMessage);
+//get
+router
+  .route("/getMesssages/:chatId")
+  .get(isAuthenticated, chat.fetchAllMessages);
+
 module.exports = router;
