@@ -7,7 +7,7 @@ const router = express.Router();
 router.route("/create/:userId").post(isAuthenticated, chat.createChat);
 router.route("/createGroup").post(isAuthenticated, chat.createGroupChat);
 //get
-router.route("/fetch").get(isAuthenticated, chat.fetchChats);
+router.route("/fetch").post(isAuthenticated, chat.fetchChats);
 //put
 router
   .route("/addMembers/:chatId")

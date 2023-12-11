@@ -21,3 +21,15 @@
 {"date":"2023-12-11T08:04:27.357Z","level":"error","message":"Chat with this user already exist","method":"POST","service":"user-service","url":"/create/6511193937765b3b065faa83"}
 {"date":"2023-12-11T08:24:52.840Z","level":"error","message":"val is not iterable","method":"GET","service":"user-service","url":"/fetch"}
 {"date":"2023-12-11T08:42:22.577Z","level":"error","message":"Can't use $neq","method":"GET","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T09:48:47.845Z","level":"error","message":"unknown operator: $reg","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T09:49:45.629Z","level":"error","message":"unknown operator: $reg","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T09:50:32.335Z","level":"error","message":"unknown operator: $reg","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T09:51:42.210Z","level":"error","message":"unknown operator: $reg","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T09:58:08.172Z","level":"error","message":"searchFilter is not defined","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T09:58:24.324Z","level":"error","message":"searchFilter is not defined","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T09:58:28.162Z","level":"error","message":"searchFilter is not defined","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T10:02:21.277Z","level":"error","message":"Cast to ObjectId failed for value \"{ '$or': [ { firstName: [Object] }, { lastName: [Object] } ] }\" (type Object) at path \"participants\" for model \"Chat\"","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T10:10:25.866Z","level":"error","message":"Can't use _id with Array.","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T10:10:51.103Z","level":"error","message":"unknown operator: $or","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T10:16:04.321Z","level":"error","message":"Can't use participants with Array.","method":"POST","service":"user-service","url":"/fetch"}
+{"date":"2023-12-11T10:16:07.955Z","level":"error","message":"Can't use participants with Array.","method":"POST","service":"user-service","url":"/fetch"}

@@ -54,18 +54,25 @@ const createChat = async (req, res) => {
 const fetchChats = async (req, res) => {
   // #swagger.tags = ['chat']
   try {
-    // const searchFilter = req.body.search
-    //   ? {
-    //       $or: [
-    //         { firstName: { $reg: req.body.search, $options: "i" } },
-    //         {
-    //           lastName: { $reg: req.body.search, $options: "i" },
-    //         },
-    //       ],
-    //     }
-    //   : {};
+    const searchFilter = req.body.search
+      ? {
+          participants: {
+            $or: [
+              {
+                firstName: { $regex: req.body.search, $options: "i" },
+              },
+              {
+                lastName: { $regex: req.body.search, $options: "i" },
+              },
+            ],
+          },
+        }
+      : {};
+    // _id: { $ne: req.user._id },
+
     let chats = await Chat.find({
-      participants: { $elemMatch: { $eq: req.user._id } },
+      participants: { $in: req.user._id },
+      // ...searchFilter,
     })
       .populate({
         path: "participants",
@@ -79,6 +86,7 @@ const fetchChats = async (req, res) => {
         path: "latestMessage",
       })
       .sort({ updatedAt: -1 });
+    console.log(chats);
     let userChats = await Promise.all(
       chats.map(async (val) => {
         const unreadMessage = await Message.countDocuments({
@@ -291,7 +299,6 @@ const sendMessage = async (req, res) => {
     });
     newMessage = await newMessage.populate({
       path: "chat",
-      // select: "name email profilePic",
     });
     newMessage = await User.populate(newMessage, {
       path: "chat.participants",
@@ -331,17 +338,13 @@ const fetchAllMessages = async (req, res) => {
       })
       .populate({
         path: "chat",
-        // select: "name email profilePic",
       });
-    // let unreadMessage = 0;
     const messages = await Promise.all(
       allMessages.map(async (val) => {
         const isSender = val.sender._id.equals(req.user._id);
         const isRead = val.isRead || isSender;
         console.log(isRead);
-        // if (!isRead) {
-        //   unreadMessage++;
-        // }
+
         if (!isSender) {
           console.log(val._id);
           await Message.findByIdAndUpdate(
